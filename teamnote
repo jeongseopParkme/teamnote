@@ -1,0 +1,16 @@
+def dfs(graph,node,visited):  #using recursive function
+	visited[node]=True        #need visited=[False]*(n+1)
+	for i in graph[node]:
+		if not visited[i]:
+			dfs(graph,i,visited)
+
+def dfs(graph,node,visited):    #using stack
+    visited[node]=True
+    stack=[node]                #python's list data type provides stack  
+  
+    while stack:
+        cur=stack.pop()
+        for i in graph[cur]:
+            if not visited[i]:
+                stack.append(i)
+                visited[i]=True
