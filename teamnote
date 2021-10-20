@@ -14,3 +14,12 @@ def dfs(graph,node,visited):    #using stack
             if not visited[i]:
                 stack.append(i)
                 visited[i]=True
+
+def longest_increasing_subsequence(arr):	#가장 긴 증가하는 부분수열의 길이 반환
+	for i in range(n):
+		if arr[i]>dp[-1]: 
+			dp.append(arr[i])
+		else:
+			idx=bisect.bisect_left(dp, arr[i])
+			dp[idx]=arr[i]
+	return len(dp)
