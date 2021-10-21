@@ -7,7 +7,6 @@ def dfs(graph,node,visited):  #using recursive function
 def dfs(graph,node,visited):    #using stack
     visited[node]=True
     stack=[node]                #python's list data type provides stack  
-  
     while stack:
         cur=stack.pop()
         for i in graph[cur]:
@@ -16,10 +15,18 @@ def dfs(graph,node,visited):    #using stack
                 visited[i]=True
 
 def longest_increasing_subsequence(arr):	#가장 긴 증가하는 부분수열의 길이 반환
-	for i in range(n):
+	for i in range(n):						#다이내믹 프로그래밍 사용
 		if arr[i]>dp[-1]: 
 			dp.append(arr[i])
 		else:
 			idx=bisect.bisect_left(dp, arr[i])
 			dp[idx]=arr[i]
 	return len(dp)
+	
+def longest_common_subsequence(a,b):		#가장 긴 공통된 부분수열의 길이 반환
+	for i in range(n):						#a,b는 주어진 두 문자열이다
+		for j in range(m):
+			if a[i]==b[j]:
+				dp[i+1][j+1]=dp[i][j]+1
+			elif a[i]!=b[j]:
+				dp[i+1][j+1]=max(dp[i][j+1],dp[i+1][j])
